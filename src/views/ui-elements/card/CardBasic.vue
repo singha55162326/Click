@@ -1,134 +1,178 @@
 <template>
-    <v-card>
-        <v-tabs
-                v-model="tab"
-                background-color="deep-purple accent-4"
-                centered
-                color="#28E5B9"
-              
-        >
+
+ <div>
+  <div class="mt-5">
+    <vs-tabs alignment="fixed">
+      <vs-tab label="Project">
+        <div><div>
+      <vs-table pagination max-items="7" search :data="users">
+           <template slot="header">
+       
+        </template>
+    <template slot="thead">
+       <vs-th sort-key="email">ID</vs-th>
+      <vs-th sort-key="username">Project name</vs-th>
+      <vs-th sort-key="website">Customer name</vs-th>
+      <vs-th sort-key="id">Contact Person</vs-th>
+      <vs-th sort-key="id">Contact Number</vs-th>
+       <vs-th sort-key="id">Service Type</vs-th>
+       <vs-th sort-key="id">Register date</vs-th>
+   
+    </template>
+    <template slot-scope="{data}">
+      <vs-tr :data="tr" :key="indextr" v-for="(tr, indextr) in data">
+        <vs-td :data="data[indextr].id">
+          {{ data[indextr].id }}
+        </vs-td>
+         <vs-td :data="data[indextr].projectname">
+          {{ data[indextr].projectname }}
+        </vs-td>
+
+        <vs-td :data="data[indextr].customername">
+          {{ data[indextr].customername }}
+        </vs-td>
+
+        <vs-td :data="data[indextr].contactperson">
+          {{ data[indextr].contactperson }}
+        </vs-td>
+        <vs-td :data="data[indextr].contactnumber">
+          {{ data[indextr].contactnumber }}
+        </vs-td>
+          <vs-td :data="data[indextr].Servicetype">
+          {{ data[indextr].Servicetype }}
+        
+        </vs-td>
+         
+          <vs-td :data="data[indextr].Registerdate">
+          {{ data[indextr].Registerdate }}
+        <vs-button type="line"  @click="$router.push('/import-export/export')">Product</vs-button>
+        </vs-td>
+         
+      </vs-tr>
+    </template>
+  </vs-table>
+   </div></div>
+      </vs-tab>
+      <vs-tab label="History">
+        <div> <vs-table   pagination max-items="7" search :data="users">
+
+     <template slot="thead">
+     <vs-th sort-key="email">ID</vs-th>
+      <vs-th sort-key="username">Project name</vs-th>
+      <vs-th sort-key="website">Customer name</vs-th>
+      <vs-th sort-key="id">Contact Person</vs-th>
+      <vs-th sort-key="id">Contact Number</vs-th>
+       <vs-th sort-key="id">Service Type</vs-th>
+       <vs-th sort-key="id">Register date</vs-th>
+    </template>
+    <template slot-scope="{data}">
+      <vs-tr :data="tr" :key="indextr" v-for="(tr, indextr) in data">
+  <vs-td :data="data[indextr].id">
+          {{ data[indextr].id }}
+        </vs-td>
+         <vs-td :data="data[indextr].projectname">
+          {{ data[indextr].projectname }}
+        </vs-td>
+
+        <vs-td :data="data[indextr].customername">
+          {{ data[indextr].customername }}
+        </vs-td>
+
+        <vs-td :data="data[indextr].contactperson">
+          {{ data[indextr].contactperson }}
+        </vs-td>
+        <vs-td :data="data[indextr].contactnumber">
+          {{ data[indextr].contactnumber }}
+        </vs-td>
+          <vs-td :data="data[indextr].Servicetype">
+          {{ data[indextr].Servicetype }}
+        
+        </vs-td>
+         
+          <vs-td :data="data[indextr].Registerdate">
+          {{ data[indextr].Registerdate }}
+     
+        </vs-td>
+       <vs-chip color="#00E676">Done </vs-chip>
           
-
-            <v-tab href="#tab1">
-                New Project
-            </v-tab>
-
-            <v-tab href="#tab2">
-                    History
-            </v-tab>
-        </v-tabs>    
-        <v-tabs-items v-model="tab">
-            <v-data-table
-                    :headers="headers"
-                    :items="desserts"
-                    :items-per-page="5"
-                    class="elevation-1"
-            >
-            </v-data-table>
-        </v-tabs-items>
-    </v-card>
-</template>
-
+      </vs-tr>
+    </template>
+  </vs-table></div>
+      </vs-tab>
+    </vs-tabs>
+  </div>
+  
+ </div>
+ </template>
+ 
 <script>
-  export default {
-    data () {
-      return {
-        headers: [
-          {
-            text: 'Dessert (100g serving)',
-            align: 'start',
-            sortable: false,
-            value: 'name',
-          },
-          { text: 'Calories', value: 'calories' },
-          { text: 'Fat (g)', value: 'fat' },
-          { text: 'Carbs (g)', value: 'carbs' },
-          { text: 'Protein (g)', value: 'protein' },
-          { text: 'Iron (%)', value: 'iron' },
-        ],
-        desserts: [
-          {
-            name: 'Frozen Yogurt',
-            calories: 159,
-            fat: 6.0,
-            carbs: 24,
-            protein: 4.0,
-            iron: '1%',
-          },
-          {
-            name: 'Ice cream sandwich',
-            calories: 237,
-            fat: 9.0,
-            carbs: 37,
-            protein: 4.3,
-            iron: '1%',
-          },
-          {
-            name: 'Eclair',
-            calories: 262,
-            fat: 16.0,
-            carbs: 23,
-            protein: 6.0,
-            iron: '7%',
-          },
-          {
-            name: 'Cupcake',
-            calories: 305,
-            fat: 3.7,
-            carbs: 67,
-            protein: 4.3,
-            iron: '8%',
-          },
-          {
-            name: 'Gingerbread',
-            calories: 356,
-            fat: 16.0,
-            carbs: 49,
-            protein: 3.9,
-            iron: '16%',
-          },
-          {
-            name: 'Jelly bean',
-            calories: 375,
-            fat: 0.0,
-            carbs: 94,
-            protein: 0.0,
-            iron: '0%',
-          },
-          {
-            name: 'Lollipop',
-            calories: 392,
-            fat: 0.2,
-            carbs: 98,
-            protein: 0,
-            iron: '2%',
-          },
-          {
-            name: 'Honeycomb',
-            calories: 408,
-            fat: 3.2,
-            carbs: 87,
-            protein: 6.5,
-            iron: '45%',
-          },
-          {
-            name: 'Donut',
-            calories: 452,
-            fat: 25.0,
-            carbs: 51,
-            protein: 4.9,
-            iron: '22%',
-          },
-          {
-            name: 'KitKat',
-            calories: 518,
-            fat: 26.0,
-            carbs: 65,
-            protein: 7,
-            iron: '6%',
-          },
-        ],
-      }
-    },
-  }
-</script>
+export default {
+  data() {
+    return {
+      selected: [],
+      'tableList': [
+        'vs-th: Component',
+        'vs-tr: Component',
+        'vs-td: Component',
+        'thread: Slot',
+        'tbody: Slot',
+        'header: Slot'
+      ],
+      users: [
+         {
+          "id": "PJ-PM-210001",
+          "projectname": "Project A",
+          "customername": "Bret",
+          "contactperson": "Mrx",
+          "contactnumber": "02055667788",
+          "Servicetype": "Posm",
+          "Registerdate":"25.12.2020",
+        },
+        {
+          "id": "PJ-EV-210002",
+          "projectname": "Project B",
+          "customername": "Bret",
+          "contactperson": "Mrx",
+          "contactnumber": "02055667788",
+          "Servicetype": "Posm",
+          "Registerdate":"25.12.2020"
+        },  {
+          "id": "PJ-EV-210001",
+          "projectname": "Project c",
+          "customername": "Bret",
+          "contactperson": "Mrx",
+          "contactnumber": "02055667788",
+          "Servicetype": "Event",
+          "Registerdate":"25.12.2020"
+        },  {
+          "id": "PJ-EV-210002",
+          "projectname": "Project D",
+          "customername": "Bret",
+          "contactperson": "kinimosawa",
+          "contactnumber": "02055667788",
+          "Servicetype": "Event",
+          "Registerdate":"25.12.2020"
+        },  {
+          "id": "PJ-AD-210001",
+          "projectname": "Project E",
+          "customername": "Bret",
+          "contactperson": "Mrx",
+          "contactnumber": "02055667788",
+          "Servicetype": "Advertising",
+          "Registerdate":"25.12.2020"
+        },  {
+          "id": "PJ-AD-210002",
+          "projectname": "Project F",
+          "customername": "Bret",
+          "contactperson": "Mrx",
+          "contactnumber": "02055667788",
+          "Servicetype": "Advertising",
+          "Registerdate":"25.12.2020"
+        },
+      ]
+    }
+  },
+}
+</script>      
+
+
